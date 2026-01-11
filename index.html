@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="ko" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026학년도 3학년 3반</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script><!-- Google Fonts - Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+    
+    /* Smooth transitions */
+    .transition-smooth {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Modal backdrop */
+    .modal-backdrop {
+      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Card hover effects */
+    .card-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Gradient animations */
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .gradient-animate {
+      background-size: 200% 200%;
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    /* Timeline animations */
+    .timeline-item {
+      opacity: 0;
+      animation: slideInLeft 0.6s ease forwards;
+    }
+    
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+    .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Pulse animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .pulse-animate {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    /* Float animation for DNA strands */
+    @keyframes float {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+      }
+      50% { 
+        transform: translateY(-20px) rotate(5deg);
+      }
+    }
+    
+    /* Message animation */
+    .message-enter {
+      animation: messageSlide 0.5s ease;
+    }
+    
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 10px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #6366f1, #8b5cf6);
+      border-radius: 10px;
+    }
+    
+    /* Button ripple effect */
+    .btn-ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-ripple::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-ripple:active::after {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto custom-scrollbar" style="background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 25%, #B2DFDB 50%, #80CBC4 75%, #81C784 100%);"><!-- Floating DNA Strands Background -->
+   <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index: 0;">
+    <svg class="absolute" style="top: 10%; left: 5%; width: 80px; opacity: 0.15; animation: float 8s ease-in-out infinite;" viewbox="0 0 40 100"><line x1="15" y1="0" x2="25" y2="100" stroke="#4CAF50" stroke-width="2" /> <line x1="25" y1="0" x2="15" y2="100" stroke="#66BB6A" stroke-width="2" /> <circle cx="15" cy="10" r="3" fill="#81C784" /> <circle cx="25" cy="20" r="3" fill="#A5D6A7" /> <circle cx="15" cy="30" r="3" fill="#66BB6A" /> <circle cx="25" cy="40" r="3" fill="#4CAF50" /> <circle cx="15" cy="50" r="3" fill="#81C784" /> <circle cx="25" cy="60" r="3" fill="#A5D6A7" /> <circle cx="15" cy="70" r="3" fill="#66BB6A" /> <circle cx="25" cy="80" r="3" fill="#4CAF50" /> <circle cx="15" cy="90" r="3" fill="#81C784" />
+    </svg>
+    <svg class="absolute" style="top: 40%; right: 8%; width: 60px; opacity: 0.12; animation: float 10s ease-in-out infinite 1s;" viewbox="0 0 40 80"><line x1="15" y1="0" x2="25" y2="80" stroke="#26A69A" stroke-width="2" /> <line x1="25" y1="0" x2="15" y2="80" stroke="#4DB6AC" stroke-width="2" /> <circle cx="15" cy="10" r="2.5" fill="#80CBC4" /> <circle cx="25" cy="20" r="2.5" fill="#B2DFDB" /> <circle cx="15" cy="30" r="2.5" fill="#4DB6AC" /> <circle cx="25" cy="40" r="2.5" fill="#26A69A" /> <circle cx="15" cy="50" r="2.5" fill="#80CBC4" /> <circle cx="25" cy="60" r="2.5" fill="#B2DFDB" /> <circle cx="15" cy="70" r="2.5" fill="#4DB6AC" />
+    </svg>
+    <svg class="absolute" style="bottom: 15%; left: 15%; width: 70px; opacity: 0.1; animation: float 9s ease-in-out infinite 2s;" viewbox="0 0 40 90"><line x1="15" y1="0" x2="25" y2="90" stroke="#66BB6A" stroke-width="2" /> <line x1="25" y1="0" x2="15" y2="90" stroke="#81C784" stroke-width="2" /> <circle cx="15" cy="12" r="3" fill="#A5D6A7" /> <circle cx="25" cy="24" r="3" fill="#C8E6C9" /> <circle cx="15" cy="36" r="3" fill="#81C784" /> <circle cx="25" cy="48" r="3" fill="#66BB6A" /> <circle cx="15" cy="60" r="3" fill="#A5D6A7" /> <circle cx="25" cy="72" r="3" fill="#C8E6C9" />
+    </svg>
+   </div><!-- Hero Section -->
+   <header class="w-full px-4 py-8 sm:py-12" style="position: relative; z-index: 1;">
+    <div class="max-w-4xl mx-auto"><!-- Main Title Card -->
+     <div class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl mb-6 card-lift transition-smooth" style="background: linear-gradient(135deg, #81C784 0%, #66BB6A 100%);">
+      <div class="absolute inset-0 opacity-15"><!-- Cell pattern background -->
+       <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;"><defs>
+         <pattern id="cellPattern" x="0" y="0" width="80" height="80" patternunits="userSpaceOnUse">
+          <circle cx="40" cy="40" r="25" fill="none" stroke="white" stroke-width="2" opacity="0.3" />
+          <circle cx="40" cy="40" r="8" fill="white" opacity="0.4" />
+         </pattern>
+        </defs> <rect width="100%" height="100%" fill="url(#cellPattern)" />
+       </svg>
+      </div>
+      <div class="relative p-8 sm:p-12 text-center">
+       <div class="mb-4">
+        <div class="inline-block p-4 rounded-2xl" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);"><!-- DNA Helix Icon -->
+         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48" fill="none"><line x1="18" y1="4" x2="30" y2="44" stroke="#ffffff" stroke-width="3" stroke-linecap="round" /> <line x1="30" y1="4" x2="18" y2="44" stroke="#ffffff" stroke-width="3" stroke-linecap="round" /> <circle cx="18" cy="8" r="3" fill="#ffffff" /> <circle cx="30" cy="12" r="3" fill="#ffffff" /> <circle cx="18" cy="16" r="3" fill="#ffffff" /> <circle cx="30" cy="20" r="3" fill="#ffffff" /> <circle cx="18" cy="24" r="3" fill="#ffffff" /> <circle cx="30" cy="28" r="3" fill="#ffffff" /> <circle cx="18" cy="32" r="3" fill="#ffffff" /> <circle cx="30" cy="36" r="3" fill="#ffffff" /> <circle cx="18" cy="40" r="3" fill="#ffffff" /> <line x1="18" y1="8" x2="30" y2="12" stroke="#ffffff" stroke-width="1.5" opacity="0.6" /> <line x1="18" y1="16" x2="30" y2="20" stroke="#ffffff" stroke-width="1.5" opacity="0.6" /> <line x1="18" y1="24" x2="30" y2="28" stroke="#ffffff" stroke-width="1.5" opacity="0.6" /> <line x1="18" y1="32" x2="30" y2="36" stroke="#ffffff" stroke-width="1.5" opacity="0.6" />
+         </svg>
+        </div>
+       </div>
+       <h1 id="year-grade" class="text-4xl sm:text-5xl font-extrabold mb-3 text-white drop-shadow-lg">2026학년도 3학년 3반</h1>
+       <p id="welcome-message" class="text-lg sm:text-xl text-white opacity-95 font-semibold">여러분의 꿈을 응원합니다</p>
+      </div>
+     </div><!-- Teacher Card -->
+     <div class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl card-lift transition-smooth" style="background: linear-gradient(135deg, #80CBC4 0%, #4DB6AC 100%);">
+      <div class="absolute inset-0 opacity-10"><!-- Microscope pattern -->
+       <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;"><defs>
+         <pattern id="microscopePattern" x="0" y="0" width="100" height="100" patternunits="userSpaceOnUse">
+          <circle cx="50" cy="30" r="15" fill="none" stroke="white" stroke-width="3" opacity="0.5" />
+          <circle cx="50" cy="30" r="8" fill="white" opacity="0.3" />
+          <rect x="47" y="45" width="6" height="20" fill="white" opacity="0.4" />
+          <rect x="40" y="65" width="20" height="4" fill="white" opacity="0.4" />
+         </pattern>
+        </defs> <rect width="100%" height="100%" fill="url(#microscopePattern)" />
+       </svg>
+      </div>
+      <div class="relative p-8 sm:p-10">
+       <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div class="flex-shrink-0">
+         <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full flex items-center justify-center shadow-xl" style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);"><!-- Leaf/Biology icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewbox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /> <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+          </svg>
+         </div>
+        </div>
+        <div class="flex-1 text-center sm:text-left">
+         <h2 id="teacher-name" class="text-3xl sm:text-4xl font-extrabold mb-3 text-white drop-shadow-md">송선생</h2>
+         <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 mb-3"><span id="teacher-subject" class="px-5 py-2 rounded-full text-base font-bold shadow-lg flex items-center gap-2" style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); color: #2E7D32;"> 🧬 생명과학 </span> <span id="teacher-role" class="px-4 py-2 rounded-full text-base font-bold shadow-lg" style="background-color: rgba(255,255,255,0.9); color: #00897B;">3학년부</span>
+         </div>
+         <p class="text-base sm:text-lg text-white font-semibold opacity-95">담임교사 · 여러분과 함께 대입의 여정을 걸어갑니다</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </header><!-- Timeline Section -->
+   <section class="w-full px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+     <h2 id="timeline-title" class="text-3xl sm:text-4xl font-extrabold mb-8 text-center text-white drop-shadow-lg">2026 대입 로드맵</h2>
+     <div class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl p-6 sm:p-10 card-lift transition-smooth" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);">
+      <div class="space-y-4"><!-- March -->
+       <div class="timeline-item flex items-center gap-4 p-5 rounded-2xl transition-smooth hover:scale-105" style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4);">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-lg" style="background: rgba(255,255,255,0.9);"><span class="text-2xl font-extrabold" style="color: #fdcb6e;">3월</span>
+        </div>
+        <div class="flex-1">
+         <h3 class="text-xl font-extrabold mb-1" style="color: #2d3436;">3월 학력평���</h3>
+         <p class="text-sm font-semibold" style="color: #636e72;">첫 전국 단위 모의고사로 현재 위치 파악</p>
+        </div>
+       </div><!-- June -->
+       <div class="timeline-item flex items-center gap-4 p-5 rounded-2xl transition-smooth hover:scale-105" style="background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); box-shadow: 0 4px 15px rgba(9, 132, 227, 0.4);">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-lg" style="background: rgba(255,255,255,0.9);"><span class="text-2xl font-extrabold" style="color: #0984e3;">6월</span>
+        </div>
+        <div class="flex-1">
+         <h3 class="text-xl font-extrabold mb-1 text-white">6월 모의평가</h3>
+         <p class="text-sm font-semibold text-white opacity-90">수능 출제 기관 주관, 수시 지원 전략 수립의 기준</p>
+        </div>
+       </div><!-- September Mock -->
+       <div class="timeline-item flex items-center gap-4 p-5 rounded-2xl transition-smooth hover:scale-105" style="background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%); box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-lg" style="background: rgba(255,255,255,0.9);"><span class="text-2xl font-extrabold" style="color: #6c5ce7;">9월</span>
+        </div>
+        <div class="flex-1">
+         <h3 class="text-xl font-extrabold mb-1 text-white">9월 모의평가</h3>
+         <p class="text-sm font-semibold text-white opacity-90">최종 수시 지원 대학 결정의 핵심 지표</p>
+        </div>
+       </div><!-- September Application -->
+       <div class="timeline-item flex items-center gap-4 p-5 rounded-2xl transition-smooth hover:scale-105 pulse-animate" style="background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); box-shadow: 0 8px 25px rgba(232, 67, 147, 0.5); border: 3px solid rgba(255,255,255,0.8);">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-lg" style="background: rgba(255,255,255,0.95);"><span class="text-2xl font-extrabold" style="color: #e84393;">9월</span>
+        </div>
+        <div class="flex-1">
+         <h3 class="text-xl font-extrabold mb-1 text-white drop-shadow">✨ 수시 원서 접수</h3>
+         <p class="text-sm font-semibold text-white opacity-95">9월 중순~하순, 최대 6개 대학 지원 가능</p>
+        </div>
+       </div><!-- November CSAT -->
+       <div class="timeline-item flex items-center gap-4 p-5 rounded-2xl transition-smooth hover:scale-105 pulse-animate" style="background: linear-gradient(135deg, #55efc4 0%, #00b894 100%); box-shadow: 0 8px 25px rgba(0, 184, 148, 0.5); border: 3px solid rgba(255,255,255,0.8);">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-lg" style="background: rgba(255,255,255,0.95);"><span class="text-2xl font-extrabold" style="color: #00b894;">11월</span>
+        </div>
+        <div class="flex-1">
+         <h3 class="text-xl font-extrabold mb-1 text-white drop-shadow">🎯 대학수학능력시험</h3>
+         <p class="text-sm font-semibold text-white opacity-95">2026년 11월 중순, 12년 학���의 결���</p>
+        </div>
+       </div><!-- December -->
+       <div class="timeline-item flex items-center gap-4 p-5 rounded-2xl transition-smooth hover:scale-105 pulse-animate" style="background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); box-shadow: 0 8px 25px rgba(214, 48, 49, 0.5); border: 3px solid rgba(255,255,255,0.8);">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-lg" style="background: rgba(255,255,255,0.95);"><span class="text-2xl font-extrabold" style="color: #d63031;">12월</span>
+        </div>
+        <div class="flex-1">
+         <h3 class="text-xl font-extrabold mb-1 text-white drop-shadow">🚀 정시 원서 접수</h3>
+         <p class="text-sm font-semibold text-white opacity-95">수능 성적 발표 후 가군/나군/다군 전략적 지원</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Schedule Section -->
+   <section class="w-full px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+     <h2 id="schedule-title" class="text-3xl sm:text-4xl font-extrabold mb-8 text-center text-white drop-shadow-lg">시간표</h2>
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><!-- Student Schedule --> <button id="student-schedule-btn" class="relative overflow-hidden rounded-3xl shadow-2xl p-8 card-lift transition-smooth btn-ripple text-center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+       <div class="relative z-10">
+        <div class="inline-block p-4 rounded-2xl mb-4" style="background: rgba(255,255,255,0.9);">
+         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+         </svg>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-2 text-white drop-shadow">우리 반 시간표</h3>
+        <p class="text-base font-semibold text-white opacity-90">3학년 3반 주�� 시���표</p>
+       </div></button> <!-- Teacher Schedule --> <button id="teacher-schedule-btn" class="relative overflow-hidden rounded-3xl shadow-2xl p-8 card-lift transition-smooth btn-ripple text-center" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+       <div class="relative z-10">
+        <div class="inline-block p-4 rounded-2xl mb-4" style="background: rgba(255,255,255,0.9);">
+         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 24 24" fill="none" stroke="#fa709a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="8.5" cy="7" r="4" /><polyline points="17 11 19 13 23 9" />
+         </svg>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-2 text-white drop-shadow">송선생님 시간표</h3>
+        <p class="text-base font-semibold text-white opacity-90">수업 �� 상담 가능 시간</p>
+       </div></button>
+     </div>
+    </div>
+   </section><!-- Q&A Section -->
+   <section class="w-full px-4 py-8 pb-12">
+    <div class="max-w-4xl mx-auto">
+     <h2 id="qa-title" class="text-3xl sm:text-4xl font-extrabold mb-8 text-center text-white drop-shadow-lg">익명 Q&amp;A</h2>
+     <div class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl p-6 sm:p-10" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);"><!-- Messages Container -->
+      <div id="messages-container" class="mb-6 space-y-4 max-h-96 overflow-y-auto custom-scrollbar"><!-- Messages will be added here -->
+      </div><!-- Input Form -->
+      <form id="qa-form" class="flex gap-3"><input type="text" id="qa-input" placeholder="궁금한 점을 자유롭게 질문해주���요" class="flex-1 px-5 py-4 rounded-2xl font-semibold focus:outline-none transition-smooth shadow-md" style="border: 3px solid #e0e0e0; color: #2d3436; background: white;" onfocus="this.style.borderColor='#6c5ce7'; this.style.boxShadow='0 0 0 4px rgba(108, 92, 231, 0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'"> <button type="submit" class="px-8 py-4 rounded-2xl font-bold transition-smooth shadow-xl btn-ripple flex items-center gap-2" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 30px rgba(108, 92, 231, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+         <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg><span class="hidden sm:inline">전송</span> </button>
+      </form>
+     </div>
+    </div>
+   </section><!-- Student Schedule Modal -->
+   <div id="student-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl max-w-3xl w-full max-h-[90%] overflow-y-auto custom-scrollbar" style="background: white;">
+     <div class="sticky top-0 z-20 p-6 sm:p-8" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+      <div class="flex items-center justify-between">
+       <h3 class="text-2xl sm:text-3xl font-extrabold text-white drop-shadow">우리 반 시간표</h3><button id="close-student-modal" class="w-12 h-12 rounded-xl flex items-center justify-center transition-smooth shadow-lg" style="background: rgba(255,255,255,0.9);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+         <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg></button>
+      </div>
+     </div>
+     <div class="p-6 sm:p-8">
+      <div class="overflow-x-auto">
+       <table class="w-full text-sm">
+        <thead>
+         <tr style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <th class="p-4 text-left font-extrabold text-white">교시</th>
+          <th class="p-4 text-left font-extrabold text-white">월</th>
+          <th class="p-4 text-left font-extrabold text-white">화</th>
+          <th class="p-4 text-left font-extrabold text-white">수</th>
+          <th class="p-4 text-left font-extrabold text-white">목</th>
+          <th class="p-4 text-left font-extrabold text-white">금</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #6c5ce7;">1교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">국어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">수학</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">영어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">생명과학I</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">국어</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #6c5ce7;">2교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">수학</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">영어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">국어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">수학</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">영어</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #6c5ce7;">3교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">영어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">생명과학I</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">수학</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">한국사</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">생명과학II</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #6c5ce7;">4교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">생명과학I</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">국어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">화학I</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">영어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">수학</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #6c5ce7;">5교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">체육</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">화학I</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">생명과학II</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">국어</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">한국사</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #6c5ce7;">6교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">화학I</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">체육</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">진로</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">생명과학II</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">LT</td>
+         </tr>
+         <tr>
+          <td class="p-4 font-bold" style="color: #6c5ce7;">7교시</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">자습</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">자습</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">자���</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">자습</td>
+          <td class="p-4 font-semibold" style="color: #2d3436;">종례</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </div>
+   </div><!-- Teacher Schedule Modal -->
+   <div id="teacher-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl max-w-3xl w-full max-h-[90%] overflow-y-auto custom-scrollbar" style="background: white;">
+     <div class="sticky top-0 z-20 p-6 sm:p-8" style="background: linear-gradient(135deg, #FFD4B8 0%, #FFC9A8 100%);">
+      <div class="flex items-center justify-between">
+       <h3 class="text-2xl sm:text-3xl font-extrabold drop-shadow" style="color: #B8784D;">송선생님 시간표</h3><button id="close-teacher-modal" class="w-12 h-12 rounded-xl flex items-center justify-center transition-smooth shadow-lg" style="background: rgba(255,255,255,0.9);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewbox="0 0 24 24" fill="none" stroke="#D9956B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+         <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg></button>
+      </div>
+     </div>
+     <div class="p-6 sm:p-8">
+      <div class="mb-6 p-5 rounded-2xl" style="background: linear-gradient(135deg, #FFF4D6 0%, #FFE8B8 100%); box-shadow: 0 4px 15px rgba(255, 232, 184, 0.3);">
+       <p class="text-base font-bold" style="color: #8B7355;">💚 상담 가능 시간은 초록색으로 표시되어 있습니다</p>
+      </div>
+      <div class="overflow-x-auto">
+       <table class="w-full text-sm">
+        <thead>
+         <tr style="background: linear-gradient(135deg, #FFD4B8 0%, #FFC9A8 100%);">
+          <th class="p-4 text-left font-extrabold" style="color: #B8784D;">교시</th>
+          <th class="p-4 text-left font-extrabold" style="color: #B8784D;">월</th>
+          <th class="p-4 text-left font-extrabold" style="color: #B8784D;">화</th>
+          <th class="p-4 text-left font-extrabold" style="color: #B8784D;">수</th>
+          <th class="p-4 text-left font-extrabold" style="color: #B8784D;">목</th>
+          <th class="p-4 text-left font-extrabold" style="color: #B8784D;">금</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #8B7AA8;">1교시</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-1 생과I</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-2 생과I</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 생과I</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #8B7AA8;">2교시</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-4 생과I</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 생과I</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-1 생과I</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #8B7AA8;">3교시</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-2 생과I</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-4 생과II</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 생과II</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #8B7AA8;">4교시</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 생과I</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-4 생과I</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 생과II</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-1 생과I</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #8B7AA8;">5교시</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-1 생과II</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 생과II</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">업무</td>
+         </tr>
+         <tr style="border-bottom: 2px solid #f0f0f0;">
+          <td class="p-4 font-bold" style="color: #8B7AA8;">6교시</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-2 생과II</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">업무</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-4 생과II</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 담임</td>
+         </tr>
+         <tr>
+          <td class="p-4 font-bold" style="color: #8B7AA8;">7���시</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">업무</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">업무</td>
+          <td class="p-4 rounded-xl font-bold" style="background: linear-gradient(135deg, #BFEEE0 0%, #A5E6D5 100%); color: #4A9B82;">상담 가능</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">업무</td>
+          <td class="p-4 font-semibold" style="color: #6B5B7F;">3-3 종례</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Default Configuration
+    const defaultConfig = {
+      year_grade: '2026학년도 3학년 3반',
+      teacher_name: '송선생',
+      teacher_subject: '생명과학',
+      teacher_role: '3학년부',
+      welcome_message: '여러분의 꿈을 응원합니다',
+      timeline_title: '2026 대입 로드��',
+      schedule_title: '시간표',
+      qa_title: '익명 Q&A',
+      qa_placeholder: '궁금한 점을 자유롭게 질문해주세요',
+      primary_color: '#667eea',
+      secondary_color: '#764ba2',
+      accent_color: '#f093fb',
+      text_color: '#2d3436',
+      card_color: '#ffffff',
+      font_family: 'Nunito',
+      font_size: 16
+    };
+
+    // Update UI based on configuration
+    async function onConfigChange(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = '-apple-system, BlinkMacSystemFont, system-ui, sans-serif';
+      const baseSize = config.font_size || defaultConfig.font_size;
+      
+      // Update font
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      
+      // Update text content
+      document.getElementById('year-grade').textContent = config.year_grade || defaultConfig.year_grade;
+      document.getElementById('teacher-name').textContent = config.teacher_name || defaultConfig.teacher_name;
+      document.getElementById('teacher-subject').textContent = config.teacher_subject || defaultConfig.teacher_subject;
+      document.getElementById('teacher-role').textContent = config.teacher_role || defaultConfig.teacher_role;
+      document.getElementById('welcome-message').textContent = config.welcome_message || defaultConfig.welcome_message;
+      document.getElementById('timeline-title').textContent = config.timeline_title || defaultConfig.timeline_title;
+      document.getElementById('schedule-title').textContent = config.schedule_title || defaultConfig.schedule_title;
+      document.getElementById('qa-title').textContent = config.qa_title || defaultConfig.qa_title;
+      document.getElementById('qa-input').placeholder = config.qa_placeholder || defaultConfig.qa_placeholder;
+      
+      // Update font sizes
+      document.getElementById('year-grade').style.fontSize = `${baseSize * 2.5}px`;
+      document.querySelectorAll('h2').forEach(el => {
+        el.style.fontSize = `${baseSize * 2}px`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.card_color || defaultConfig.card_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.card_color = value;
+                window.elementSdk.setConfig({ card_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['year_grade', config.year_grade || defaultConfig.year_grade],
+        ['teacher_name', config.teacher_name || defaultConfig.teacher_name],
+        ['teacher_subject', config.teacher_subject || defaultConfig.teacher_subject],
+        ['teacher_role', config.teacher_role || defaultConfig.teacher_role],
+        ['welcome_message', config.welcome_message || defaultConfig.welcome_message],
+        ['timeline_title', config.timeline_title || defaultConfig.timeline_title],
+        ['schedule_title', config.schedule_title || defaultConfig.schedule_title],
+        ['qa_title', config.qa_title || defaultConfig.qa_title],
+        ['qa_placeholder', config.qa_placeholder || defaultConfig.qa_placeholder]
+      ]);
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Modal handling
+    const studentModal = document.getElementById('student-modal');
+    const teacherModal = document.getElementById('teacher-modal');
+    const studentBtn = document.getElementById('student-schedule-btn');
+    const teacherBtn = document.getElementById('teacher-schedule-btn');
+    const closeStudentBtn = document.getElementById('close-student-modal');
+    const closeTeacherBtn = document.getElementById('close-teacher-modal');
+
+    studentBtn.addEventListener('click', () => {
+      studentModal.classList.remove('hidden');
+      studentModal.classList.add('flex');
+    });
+
+    teacherBtn.addEventListener('click', () => {
+      teacherModal.classList.remove('hidden');
+      teacherModal.classList.add('flex');
+    });
+
+    closeStudentBtn.addEventListener('click', () => {
+      studentModal.classList.add('hidden');
+      studentModal.classList.remove('flex');
+    });
+
+    closeTeacherBtn.addEventListener('click', () => {
+      teacherModal.classList.add('hidden');
+      teacherModal.classList.remove('flex');
+    });
+
+    studentModal.addEventListener('click', (e) => {
+      if (e.target === studentModal) {
+        studentModal.classList.add('hidden');
+        studentModal.classList.remove('flex');
+      }
+    });
+
+    teacherModal.addEventListener('click', (e) => {
+      if (e.target === teacherModal) {
+        teacherModal.classList.add('hidden');
+        teacherModal.classList.remove('flex');
+      }
+    });
+
+    // Q&A Form Handling
+    const qaForm = document.getElementById('qa-form');
+    const qaInput = document.getElementById('qa-input');
+    const messagesContainer = document.getElementById('messages-container');
+
+    qaForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const messageText = qaInput.value.trim();
+      if (messageText === '') return;
+
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message-enter flex items-start gap-3';
+      messageDiv.innerHTML = `
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center shadow-lg" style="background: linear-gradient(135deg, #D5C9F0 0%, #C9B6E4 100%);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B7AA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-base font-extrabold" style="color: #8B7AA8;">익명</span>
+            <span class="text-sm font-semibold" style="color: #B8A4C9;">${new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+          <div class="rounded-2xl rounded-tl-sm p-4 shadow-md" style="background: white; border-left: 4px solid #C9B6E4;">
+            <p class="font-semibold" style="color: #6B5B7F;">${messageText}</p>
+          </div>
+        </div>
+      `;
+
+      messagesContainer.appendChild(messageDiv);
+      qaInput.value = '';
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc1fe3c50feea2d',t:'MTc2ODEwOTEyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
