@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>중2 생물 초성 퀴즈</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #ff3d3d, #ffd93d, #4dd0e1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .quiz-container {
+        background: #fff;
+        width: 420px;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 12px 0 #333;
+        border: 6px solid #000;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .initial {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 20px 0;
+        background: #ffeb3b;
+        border: 4px solid #000;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 6px 0 #000;
+    }
+
+    .description {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .choices button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 12px;
+        border: 3px solid #000;
+        cursor: pointer;
+        background: #4caf50;
+        color: white;
+        box-shadow: 0 5px 0 #000;
+    }
+
+    .choices button:hover {
+        transform: translateY(2px);
+        box-shadow: 0 3px 0 #000;
+    }
+
+    .result {
+        font-size: 22px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+<div class="quiz-container">
+    <h1>🧬 중2 생물 초성 퀴즈</h1>
+
+    <div id="quiz">
+        <div class="initial" id="initial"></div>
+        <div class="description" id="description"></div>
+        <div class="choices" id="choices"></div>
+    </div>
+
+    <div id="result" class="result" style="display:none;"></div>
+</div>
+
+<script>
+const questions = [
+    {
+        initial: "ㅅㅍ",
+        description: "식물이 빛을 이용해 양분을 만드는 과정",
+        choices: ["세포", "산포", "세포분열"],
+        answer: "세포분열"
+    },
+    {
+        initial: "ㅎㅇ",
+        description: "생물이 살아가기 위해 필요한 기본 단위",
+        choices: ["호흡", "혈액", "세포"],
+        answer: "세포"
+    },
+    {
+        initial: "ㄱㄱ",
+        description: "식물의 잎에서 기체가 드나드는 작은 구멍",
+        choices: ["기공", "기관", "구조"],
+        answer: "기공"
+    }
+];
+
+let current = 0;
+let score = 0;
+
+function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("initial").textContent = q.initial;
+    document.getElementById("description").textContent = q.description;
+
+    const choicesDiv = document.getElementById("choices");
+    choicesDiv.innerHTML = "";
+
+    q.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.onclick = () => checkAnswer(choice);
+        choicesDiv.appendChild(btn);
+    });
+}
+
+function checkAnswer(choice) {
+    if (choice === questions[current].answer) {
+        score++;
+    }
+    current++;
+
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById("quiz").style.display = "none";
+    const resultDiv = document.getElementById("result");
+    resultDiv.style.display = "block";
+    resultDiv.textContent = `🎉 총 3문제 중 ${score}문제 맞혔어요!`;
+}
+
+loadQuestion();
+</script>
+</body>
+</html>
