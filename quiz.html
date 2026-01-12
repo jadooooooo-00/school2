@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>중학교 과학 퀴즈</title>
+<style>
+body {
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+    background: #eef3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#container {
+    width: 90%;
+    max-width: 650px;
+}
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+h2 {
+    margin-top: 0;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    opacity: 0.9;
+}
+.correct {
+    color: green;
+    font-size: 22px;
+    text-align: center;
+}
+.wrong {
+    color: red;
+    font-size: 22px;
+    text-align: center;
+}
+#explanation {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+.center {
+    text-align: center;
+}
+.intro-img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: contain;
+    margin: 16px 0;
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+
+<!-- 첫 페이지 안내 -->
+<div class="card center" id="introCard">
+    <h2>🧪 중학교 과학 퀴즈</h2>
+
+    <!-- ✅ 사용자가 올린 이미지 -->
+    <img 
+      src="2208.i605.013.S.m005.c13.scientist laboratory big set.jpg" 
+      alt="과학 실험 일러스트"
+      class="intro-img"
+    >
+
+    <p>
+        중학교 과학 내용을 재미있게 복습해볼까요?<br>
+        총 <strong>10문제</strong>의 4지선다 퀴즈가 준비되어 있어요.<br>
+        문제를 풀면 바로 정답과 해설을 확인할 수 있습니다!
+    </p>
+
+    <button onclick="startQuiz()">🚀 퀴즈 시작하기</button>
+</div>
+
+<!-- 퀴즈 카드 -->
+<div class="card" id="quizCard" style="display:none;">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <div id="result"></div>
+    <div id="explanation"></div>
+    <button id="nextBtn" style="display:none;">다음 문제</button>
+</div>
+
+<!-- 결과 카드 -->
+<div class="card center" id="resultCard" style="display:none;"></div>
+
+</div>
+
+<script>
+const quizData = [
+ {q:"순물질인 것은?", o:["소금물","공기","산소","주스"], a:2, e:"산소는 한 가지 물질로 이루어진 순물질입니다."},
+ {q:"물질의 밀도는 무엇으로 계산할까?", o:["질량/부피","부피/질량","무게","크기"], a:0, e:"밀도 = 질량 ÷ 부피입니다."},
+ {q:"태양계에서 가장 큰 행성은?", o:["지구","토성","목성","금성"], a:2, e:"목성은 태양계에서 가장 큰 행성입니다."},
+ {q:"혼합물의 끓는점은?", o:["항상 일정","항상 높음","항상 낮음","일정하지 않음"], a:3, e:"혼합물은 끓는점이 일정하지 않습니다."},
+ {q:"지구가 하루에 한 바퀴 하는 운동은?", o:["공전","자전","이동","회전"], a:1, e:"지구는 하루에 한 바퀴 자전합니다."},
+ {q:"물질의 특성이 아닌 것은?", o:["밀도","녹는점","질량","끓는점"], a:2, e:"질량은 물질의 양입니다."},
+ {q:"혼합물의 예는?", o:["산소","증류수","철","소금물"], a:3, e:"소금물은 혼합물입니다."},
+ {q:"지구의 공전 주기는?", o:["1일","1달","1년","10년"], a:2, e:"지구는 1년에 한 바퀴 공전합니다."},
+ {q:"순물질의 녹는점은?", o:["일정하다","변한다","모른다","항상 높다"], a:0, e:"순물질의 녹는점은 일정합니다."},
+ {q:"지구 둘레를 처음 계산한 사람은?", o:["뉴턴","갈릴레오","에라토스테네스","아인슈타인"], a:2, e:"에라토스테네스가 계산했습니다."}
+];
+
+let index = 0;
+let score = 0;
+
+const introCard = document.getElementById("introCard");
+const quizCard = document.getElementById("quizCard");
+const resultCard = document.getElementById("resultCard");
+const qEl = document.getElementById("question");
+const oEl = document.getElementById("options");
+const rEl = document.getElementById("result");
+const eEl = document.getElementById("explanation");
+const nextBtn = document.getElementById("nextBtn");
+
+function startQuiz() {
+    introCard.style.display = "none";
+    quizCard.style.display = "block";
+    loadQuiz();
+}
+
+function loadQuiz() {
+    const q = quizData[index];
+    qEl.innerText = `${index + 1}. ${q.q}`;
+    oEl.innerHTML = "";
+    rEl.innerText = "";
+    eEl.innerText = "";
+    nextBtn.style.display = "none";
+
+    q.o.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i);
+        oEl.appendChild(btn);
+    });
+}
+
+function checkAnswer(choice) {
+    document.querySelectorAll("#options button").forEach(b => b.disabled = true);
+    const q = quizData[index];
+
+    if (choice === q.a) {
+        rEl.innerText = "딩동댕!";
+        rEl.className = "correct";
+        score++;
+    } else {
+        rEl.innerText = "땡!";
+        rEl.className = "wrong";
+    }
+
+    eEl.innerText = "📖 해설: " + q.e;
+    nextBtn.style.display = "block";
+}
+
+nextBtn.onclick = () => {
+    index++;
+    index < quizData.length ? loadQuiz() : finishQuiz();
+};
+
+function finishQuiz() {
+    quizCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    let msg =
+        score === 10 ? "🌟 완벽해요!" :
+        score >= 7 ? "👍 아주 잘했어요!" :
+        score >= 4 ? "😊 괜찮아요!" :
+        "💪 다시 도전해봐요!";
+
+    resultCard.innerHTML = `
+        <h2>🎉 퀴즈 종료</h2>
+        <p><strong>총 맞춘 개수: ${score} / 10</strong></p>
+        <p>${msg}</p>
+        <button onclick="location.reload()">🔁 다시 풀기</button>
+    `;
+}
+</script>
+
+</body>
+</html>
